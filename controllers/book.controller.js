@@ -3,7 +3,6 @@ const upload = require('./upload-cover').single(`cover`)
 const Op = require('sequelize').Op
 const path = require('path')
 const fs = require('fs')
-const { error } = require('console')
 exports.getAllBook = async (req,res) =>{
     let books = await bookModel.findAll()
     return res.json({
@@ -77,13 +76,13 @@ exports.updateBook = async (request, response) => {
             stock: request.body.stock
         }
         if (request.file) {
-            const selectedBook= await bookModel.findOne({
-                where: { id: id}
-            })
+            const selectedBook = await bookModel.findOne({where: { id: id } })
             const oldCoverBook = selectedBook.cover
-            const pathCover = path.join(__dirname,`../cover`,oldCoverBook.toString())
+            const pathCover = path.join(__dirname,`../cover`,oldCoverBook)
             if (fs.existsSync (pathCover)) {
-                fs.unlink(pathCover, error => console.log(error))
+                fs.unlink(pathCover, error =>{
+                    console.log(id, error)
+                })
             }
             book.cover = request.file.filename
         }
@@ -95,8 +94,8 @@ exports.updateBook = async (request, response) => {
                     message: "Data book has been updated"
                 }) 
             })
-        .catch(error => {
-            return response.json({
+            .catch(error => {
+                return response.json({
             })
         })
     })
@@ -105,7 +104,7 @@ exports.deleteBook = async (req,res) =>{
     const id = req.params.id
     const book = await bookModel.findOne({where:{id:id}})
     const oldCoverBook = book.cover
-    const pathCover = path.join(__dirname,`../cover`,oldCoverBook)
+    const pathCover = path.join(__dirname,`./cover`,oldCoverBook)
     if(fs.existsSync(pathCover)){
         fs.unlink(pathCover,error=>console.log(error))
     }
