@@ -1,1 +1,0 @@
-modul node js sequelize 
