@@ -2,13 +2,12 @@ const multer = require('multer')
 const path = require('path')
 const storage = multer.diskStorage({
     destination:(req,file,cb)=>{
-        cb(null,`/cover`)
+        cb(null,`../cover`)
     },
     filename:(req,file,cb)=>{
         cb(null,`cover-${Date.now()}${path.extname(file.originalname)}`)
     }
 })
-
 const upload = multer({
     storage:storage,
     fileFilter:(req,file,cb)=>{

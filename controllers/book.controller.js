@@ -41,7 +41,6 @@ exports.addBook = async (req,res) =>{
             isbn: req.body.isbn, 
             title: req.body.title,
             author: req.body.author,
-            
             publisher: req.body.publisher, 
             category: req.body.category,
             stock: req.body.stock,
@@ -82,7 +81,7 @@ exports.updateBook = async (request, response) => {
                 where: { id: id}
             })
             const oldCoverBook = selectedBook.cover
-            const pathCover = path.join(__dirname,`../cover`,oldCoverBook)
+            const pathCover = path.join(__dirname,`../cover`,oldCoverBook.toString())
             if (fs.existsSync (pathCover)) {
                 fs.unlink(pathCover, error => console.log(error))
             }
