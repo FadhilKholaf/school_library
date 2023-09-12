@@ -37,7 +37,7 @@ exports.findAdmin = async (req, res) => {
     let admins = await adminModel.findAll({
         where: {
             [Op.and]:[
-                {username: {[Op.substring]: req.body.username}},
+                //{username: {[Op.substring]: req.body.username}},
                 {pasword: md5(req.body.pasword)}
             ]
         }
