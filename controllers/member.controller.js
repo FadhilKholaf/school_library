@@ -76,7 +76,7 @@ exports.updateMember = async (request, response) => {
                 where: { id: id}
             })
             const oldProfileMember = selectedMember.photo
-            const pathProfile = path.join(__dirname,`./photo`,oldProfileMember)
+            const pathProfile = path.join(__dirname,`../photo`,oldProfileMember.toString())
             if (fs.existsSync (pathProfile)) {
                 fs.unlink(pathProfile, error => console.log(error))
             }
@@ -100,7 +100,7 @@ exports.deleteMember = async (req,res) =>{
     const id = req.params.id
     const member = await memberModel.findOne({where:{id:id}})
     const oldProfileMember = member.photo
-    const pathProfile = path.join(__dirname,`./photo`,oldProfileMember)
+    const pathProfile = path.join(__dirname,`../photo`,oldProfileMember.toString())
     if(fs.existsSync(pathProfile)){
         fs.unlink(pathProfile,error=>console.log(error))
     }
