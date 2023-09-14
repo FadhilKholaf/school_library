@@ -145,3 +145,24 @@ exports.getBorrow = async(req,res)=>{
         message:"all borrowing book have been loaded"
     })
 }
+exports.findBorrowBy = async (req,res)=>{
+    let memberID = req.params.id
+    let data = await borrowModel.findAll(
+        {
+            where:{memberID:memberID},
+            include:[
+                "member","admin",
+                {
+                    model: detailsOfBorrowModel,
+                    as:"details_of_borrow",
+                    include:["book"]
+                }
+            ]
+        }
+    )
+    return res.json({
+        success:true,
+        data:data,
+        message:"all borrowing book have been loaded"
+    })
+}
