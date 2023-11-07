@@ -78,7 +78,7 @@ exports.updateBook = async (request, response) => {
         if (request.file) {
             const selectedBook = await bookModel.findOne({where: { id: id } })
             const oldCoverBook = selectedBook.cover
-            const pathCover = path.join(__dirname,`../cover`,oldCoverBook)
+            const pathCover = path.join(__dirname,`../cover`,oldCoverBook.toString())
             if (fs.existsSync (pathCover)) {
                 fs.unlink(pathCover, error =>{
                     console.log(id, error)
@@ -104,7 +104,7 @@ exports.deleteBook = async (req,res) =>{
     const id = req.params.id
     const book = await bookModel.findOne({where:{id:id}})
     const oldCoverBook = book.cover
-    const pathCover = path.join(__dirname,`../cover`,oldCoverBook)
+    const pathCover = path.join(__dirname,`../cover`,oldCoverBook.toString())
     if(fs.existsSync(pathCover)){
         fs.unlink(pathCover,error=>console.log(error))
     }
