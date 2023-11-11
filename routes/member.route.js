@@ -1,10 +1,11 @@
-const express = require('express')
-const app = express()
-app.use(express.json())
-const memberController = require('../controllers/member.controller')
-app.get("/", memberController.getAllMember)
-app.post("/", memberController.addMember)
-app.post("/find", memberController.findMember)
-app.put("/:id", memberController.updateMember)
-app.delete("/:id", memberController.deleteMember)
-module.exports = app
+const express = require("express");
+const app = express();
+app.use(express.json());
+const memberController = require("../controllers/member.controller");
+let { validateMember } = require("../middlewares/member-validation");
+app.get("/", memberController.getAllMember);
+app.post("/", [validateMember], memberController.addMember);
+app.post("/find", memberController.findMember);
+app.put("/:id", [validateMember], memberController.updateMember);
+app.delete("/:id", memberController.deleteMember);
+module.exports = app;
