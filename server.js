@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const PORT = 8000;
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
@@ -18,8 +17,4 @@ app.use("/admin", adminRoute);
 app.use("/book", bookRoute);
 app.use("/borrow", borrowRoute);
 
-app.use(express.static(__dirname));
-
-app.listen(PORT, () => {
-  console.log(`Server of School's Library runs on port ${PORT}`);
-});
+module.exports = app;
