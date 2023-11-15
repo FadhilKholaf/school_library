@@ -24,6 +24,4 @@ const validateMember = (req, res, next) => {
   next();
 };
 
-module.exports = {
-  validateMember,
-};
+module.exports = validateMember;

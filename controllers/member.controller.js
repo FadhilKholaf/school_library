@@ -33,15 +33,15 @@ exports.addMember = async (req,res) =>{
         if(error){
             return res.json({message:error})
         }
-        //if(!req.file){
-        //    return res.json({message:"nothing to upload"})
-        //}
+        if(!req.file){
+           return res.json({message:"nothing to upload"})
+        }
         let newMember = {
             name: req.body.name,
             address: req.body.address,
             gender: req.body.gender,
             contact: req.body.contact,
-            //photo: req.file.filename
+            photo: req.file.filename
         }
         memberModel.create(newMember)
         .then(result => {
