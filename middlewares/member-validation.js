@@ -1,13 +1,14 @@
 const joi = require("joi");
 
 const validateMember = (req, res, next) => {
+  console.log("middleware is executed");
   const rules = joi
     .object()
     .keys({
-      name: joi.string().required(),
-      address: joi.string().required(),
-      contact: joi.number().required(),
-      gender: joi.string().valid("male", "female"),
+      name: joi.string(),
+      address: joi.string(),
+      contact: joi.number(),
+      gender: joi.string().valid("male", "female").insensitive(),
     })
     .options({ abortEarly: false });
 
