@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "vercel dev",
+    "start":"node index",
+    "vercel": "vercel dev",
     "dev": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
