@@ -4,7 +4,13 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 app.use(express.json());
-app.use(cors());
+const corsConfig = {
+    origin: '',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+}
+app.use(cors(corsConfig))
+app.options("", cors(corsConfig))
 app.use(bodyParser.json());
 
 const memberRoute = require("./routes/member.route");
