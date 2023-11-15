@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "SchoolLibrary",
-    "host": "127.0.0.1",
+    "username": "freedb_fadhil",
+    "password": "?S6bW3NZevjS?Yk",
+    "database": "freedb_school-library-db",
+    "host": "sql.freedb.tech",
     "dialect": "mysql"
   },
   "test": {
